@@ -2,11 +2,8 @@
 
 from __future__ import annotations
 
-import json
 import logging
 from typing import Any
-
-import numpy as np
 
 from ..core.config import DatasetConfig
 from ..core.schema import DatasetSchema

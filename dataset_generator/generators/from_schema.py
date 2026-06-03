@@ -7,6 +7,7 @@ import logging
 from pathlib import Path
 from typing import Any
 
+import pandas as pd
 import yaml
 
 from ..core.config import DatasetConfig
@@ -77,7 +78,7 @@ class SchemaDrivenGenerator:
 
         return schema
 
-    def generate(self) -> "pd.DataFrame":
+    def generate(self) -> pd.DataFrame:
         """Generate data using the appropriate generator."""
         from ..core.types import TaskType
 

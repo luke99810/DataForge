@@ -6,7 +6,6 @@ import logging
 from dataclasses import dataclass, field
 from typing import Any
 
-import numpy as np
 import pandas as pd
 
 from ..core.schema import DatasetSchema
@@ -74,63 +73,63 @@ class DataQualityValidator:
                 ))
 
         # Check all schema fields exist
-        for field in self.schema.fields:
-            if field.name not in df.columns:
+        for f in self.schema.fields:
+            if f.name not in df.columns:
                 self.issues.append(QualityIssue(
                     "warning", "completeness",
-                    f"Schema field '{field.name}' not found in data",
-                    column=field.name,
+                    f"Schema field '{f.name}' not found in data",
+                    column=f.name,
                 ))
 
     def _check_consistency(self, df: pd.DataFrame) -> None:
         """Check logical consistency."""
         # Check unique constraints
-        for field in self.schema.fields:
-            if field.unique and field.name in df.columns:
-                n_unique = df[field.name].nunique()
-                n_total = df[field.name].notna().sum()
+        for f in self.schema.fields:
+            if f.unique and f.name in df.columns:
+                n_unique = df[f.name].nunique()
+                n_total = df[f.name].notna().sum()
                 if n_unique < n_total:
                     self.issues.append(QualityIssue(
                         "error", "consistency",
-                        f"Field '{field.name}' should be unique but has {n_total - n_unique} duplicates",
-                        column=field.name,
+                        f"Field '{f.name}' should be unique but has {n_total - n_unique} duplicates",
+                        column=f.name,
                         details={"unique": int(n_unique), "total": int(n_total)},
                     ))
 
         # Check categorical fields have valid values
-        for field in self.schema.fields:
-            if field.name in df.columns and field.constraints.categories:
-                valid_cats = set(field.constraints.categories)
-                actual_cats = set(df[field.name].dropna().unique())
+        for f in self.schema.fields:
+            if f.name in df.columns and f.constraints.categories:
+                valid_cats = set(f.constraints.categories)
+                actual_cats = set(df[f.name].dropna().unique())
                 unknown_cats = actual_cats - valid_cats
                 if unknown_cats:
                     self.issues.append(QualityIssue(
                         "warning", "consistency",
-                        f"Field '{field.name}' has unexpected categories: {unknown_cats}",
-                        column=field.name,
+                        f"Field '{f.name}' has unexpected categories: {unknown_cats}",
+                        column=f.name,
                     ))
 
     def _check_distribution(self, df: pd.DataFrame) -> None:
         """Check numerical distribution bounds."""
-        for field in self.schema.fields:
-            if field.name not in df.columns:
+        for f in self.schema.fields:
+            if f.name not in df.columns:
                 continue
-            col = df[field.name].dropna()
+            col = df[f.name].dropna()
             if len(col) == 0:
                 continue
 
-            c = field.constraints
+            c = f.constraints
             if c.min is not None and col.min() < c.min:
                 self.issues.append(QualityIssue(
                     "warning", "distribution",
-                    f"Field '{field.name}' has values below min ({col.min()} < {c.min})",
-                    column=field.name,
+                    f"Field '{f.name}' has values below min ({col.min()} < {c.min})",
+                    column=f.name,
                 ))
             if c.max is not None and col.max() > c.max:
                 self.issues.append(QualityIssue(
                     "warning", "distribution",
-                    f"Field '{field.name}' has values above max ({col.max()} > {c.max})",
-                    column=field.name,
+                    f"Field '{f.name}' has values above max ({col.max()} > {c.max})",
+                    column=f.name,
                 ))
 
     def _check_format(self, df: pd.DataFrame) -> None:

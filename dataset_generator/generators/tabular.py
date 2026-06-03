@@ -8,8 +8,7 @@ from typing import Any
 import numpy as np
 import pandas as pd
 
-from ..core.config import DatasetConfig
-from ..core.schema import DatasetSchema, FieldSchema
+from ..core.schema import FieldSchema
 from ..core.types import FieldType
 from .base import BaseGenerator
 
@@ -76,8 +75,8 @@ class TabularGenerator(BaseGenerator):
 
         elif ft == FieldType.TEXT:
             templates = [
-                f"这是关于{field.name}的第{i}条记录描述",
-                f"This is record {i} for field {field.name}",
+                "这是关于{field.name}的第{i}条记录描述",
+                "This is record {i} for field {field.name}",
             ]
             tmpl = templates[0] if self.config.language == "zh" else templates[1]
             values = [tmpl.format(i=i) for i in range(1, n + 1)]

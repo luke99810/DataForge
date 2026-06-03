@@ -42,12 +42,12 @@ class ValidationReport:
         """Render as a Markdown report string."""
         lines = [
             f"# Data Quality Report: {self.dataset_name}",
-            f"",
+            "",
             f"**Validated at:** {self.validated_at}",
             f"**Overall status:** {'✅ PASS' if self.overall_status == 'PASS' else '❌ FAIL'}",
             f"**Total checks:** {self.total_checks}",
             f"**Errors:** {len(self.errors)} | **Warnings:** {len(self.warnings)} | **Info:** {len(self.info)}",
-            f"",
+            "",
         ]
 
         if self.errors:

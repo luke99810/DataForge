@@ -147,12 +147,12 @@ class DatasetSchema:
         """Validate schema consistency. Returns a list of issues (empty = valid)."""
         issues: list[str] = []
         names = set()
-        for field in self.fields:
-            if field.name in names:
-                issues.append(f"Duplicate field name: {field.name}")
-            names.add(field.name)
-            if field.field_type == FieldType.CATEGORICAL and not field.constraints.categories:
-                issues.append(f"Categorical field '{field.name}' has no categories defined")
+        for f in self.fields:
+            if f.name in names:
+                issues.append(f"Duplicate field name: {f.name}")
+            names.add(f.name)
+            if f.field_type == FieldType.CATEGORICAL and not f.constraints.categories:
+                issues.append(f"Categorical field '{f.name}' has no categories defined")
         if self.target_field and self.target_field not in self.field_names:
             issues.append(f"target_field '{self.target_field}' not found in fields")
         return issues
