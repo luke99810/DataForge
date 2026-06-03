@@ -1,0 +1,75 @@
+[build-system]
+requires = ["setuptools>=68.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "dataset-generator"
+version = "1.0.0"
+description = "High-quality dataset generation toolkit for ML, RAG, and research prototyping"
+authors = [
+    { name = "Dataset Generator Contributors" }
+]
+license = { text = "MIT" }
+readme = "README.md"
+requires-python = ">=3.10"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Science/Research",
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Information Analysis",
+]
+dependencies = [
+    "numpy>=1.24.0",
+    "pandas>=2.0.0",
+    "pyyaml>=6.0",
+    "openpyxl>=3.1.0",
+]
+keywords = [
+    "dataset", "data-generation", "machine-learning",
+    "deep-learning", "RAG", "synthetic-data",
+    "data-science", "research",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.0",
+    "pytest-cov>=4.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0",
+]
+parquet = ["pyarrow>=14.0"]
+all = [
+    "dataset-generator[dev,parquet]",
+]
+
+[project.scripts]
+dg = "dataset_generator.cli:main"
+dataset-gen = "dataset_generator.cli:main"
+
+[project.urls]
+Homepage = "https://github.com/luke99810/Dataset-Generator"
+Documentation = "https://github.com/luke99810/Dataset-Generator#readme"
+Repository = "https://github.com/luke99810/Dataset-Generator"
+Issues = "https://github.com/luke99810/Dataset-Generator/issues"
+
+[tool.setuptools.packages.find]
+include = ["dataset_generator*"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+python_files = "test_*.py"
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true

@@ -1,0 +1,71 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+*.egg-info/
+dist/
+build/
+.eggs/
+*.egg
+
+# Virtual environments
+venv/
+.venv/
+env/
+.env/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+*.code-workspace
+
+# OS
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Data (large files — datasets should be generated, not stored in repo)
+*.parquet
+*.csv
+*.xlsx
+data/
+!tests/data/
+
+# Jupyter
+.ipynb_checkpoints/
+*.ipynb
+
+# Testing & Coverage
+.pytest_cache/
+.coverage
+htmlcov/
+*.cover
+.coverage.*
+
+# Type checking
+.mypy_cache/
+.dmypy.json
+
+# Environment
+.env
+.env.local
+.env.*.local
+
+# Packaging
+*.zip
+*.tar.gz
+
+# Logs
+*.log
+logs/
+
+# Ruff
+.ruff_cache/
+
+# Temp
+tmp/
+temp/
