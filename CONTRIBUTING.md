@@ -8,7 +8,7 @@ Thank you for your interest in contributing! This document outlines the process 
 
 ```bash
 # Clone and install
-git clone https://github.com/user/dataset-generator.git
+git clone https://github.com/luke99810/DataForge.git
 cd dataset-generator
 pip install -e ".[dev]"
 

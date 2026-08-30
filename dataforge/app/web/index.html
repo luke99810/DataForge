@@ -1,0 +1,221 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>DataForge</title>
+<link rel="icon" href="/static/icon.png">
+<link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+<div class="win">
+  <div class="titlebar">
+    <img class="tb-logo" src="/static/icon.png" alt="">
+    <div class="tb-title">DataForge</div>
+    <div class="tb-crumb" id="crumb">就绪</div>
+    <div class="tb-right">
+      <div class="tb-stat">缓存 <b id="stCache">—</b></div>
+      <div class="tb-stat">节点 <b id="stNodes">—</b></div>
+      <div class="tb-stat" id="stStatus">—</div>
+    </div>
+  </div>
+
+  <div class="body">
+    <nav class="rail" id="rail">
+      <button class="on" data-s="s1">
+        <svg viewBox="0 0 24 24"><path d="M4 6h16M4 12h16M4 18h10"/></svg>配置</button>
+      <button data-s="s2">
+        <svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="5" rx="1"/><rect x="14" y="3" width="7" height="5" rx="1"/><rect x="8" y="16" width="8" height="5" rx="1"/><path d="M6.5 8v4h11V8M12 12v4"/></svg>图谱</button>
+      <button data-s="s3">
+        <svg viewBox="0 0 24 24"><path d="M3 3v18h18"/><path d="M7 15l4-5 3 3 5-7"/></svg>质量</button>
+      <button data-s="s4">
+        <svg viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18M9 9v11"/></svg>数据</button>
+      <button data-s="s5">
+        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 2"/></svg>历史</button>
+    </nav>
+
+    <!-- ═══ 配置 + 轨迹 ═══ -->
+    <section class="screen on" id="s1">
+      <div class="wsplit">
+        <div class="col cfg">
+          <div class="pad scroll">
+            <h2 class="sec">流水线配置</h2>
+            <p class="sub">配置会进节点指纹 —— 改动只会让受影响的分支重算</p>
+
+            <div id="askBox"></div>
+            <div id="errBox"></div>
+
+            <div class="fldbox">
+              <h3>说需求 <span class="pill p" id="planPill">Planner</span>
+                <span style="flex:1"></span>
+                <button class="btn sm" id="btnPlan">让 Agent 规划</button></h3>
+              <textarea id="fNl" rows="3" placeholder="例如：给我一份城市交通拥堵分类数据集，用速度、流量、占有率预测拥堵等级，一千条左右"></textarea>
+              <div class="muted" style="font-size:11.5px;line-height:1.7;margin-top:7px">
+                模型产出的是一份<b>计划书</b>而不是图 ——
+                它填的就是下面这张表单，你可以改完再跑。
+                <b style="color:var(--amber)">图的结构由代码建，模型碰不到。</b>
+              </div>
+              <div id="planOut"></div>
+            </div>
+
+            <div class="fldbox" id="paperBox" style="display:none">
+              <h3>论文 <span class="pill m" id="llmPill">检查模型…</span></h3>
+              <div style="display:flex;gap:9px;align-items:center;margin-bottom:8px">
+                <button class="btn" id="btnPick">选择 PDF…</button>
+                <input type="file" id="filePdf" accept="application/pdf" style="display:none">
+                <span class="muted" id="paperName" style="font-size:12px">未选择</span>
+              </div>
+              <div class="muted" style="font-size:11.5px;line-height:1.7">
+                只把与数据相关的章节送给模型。<b style="color:var(--amber)">相关工作章节永远不送</b>——
+                那是把别人用过的特征误抽成本文变量的主要来源。
+              </div>
+            </div>
+
+            <div class="fldbox" id="cardsBox" style="display:none">
+              <h3>变量卡确认 <span class="pill a">不可跳过</span>
+                <span style="flex:1"></span>
+                <button class="btn sm" id="btnAdoptSuggested">采纳建议项</button>
+                <button class="btn pri sm" id="btnConfirm">确认并继续</button></h3>
+              <div class="muted" style="font-size:11.5px;margin-bottom:10px">
+                抽错了后面全错，而且看不出来——数据照样生成、格式正确、质量分很高，
+                只是它描述的不是这篇论文里的现象。
+              </div>
+              <div id="cards"></div>
+              <div id="questions"></div>
+            </div>
+
+            <div class="fldbox">
+              <h3>基本</h3>
+              <div class="grid2" style="margin-bottom:10px">
+                <div><label class="lb">数据集名称</label><input id="fName" value="traffic_demo"></div>
+                <div><label class="lb">流水线</label>
+                  <select id="fKind">
+                    <option value="tabular">表格（分类 / 回归）</option>
+                    <option value="timeseries">时序（强制按时间切分）</option>
+                    <option value="paper">论文驱动（上传 PDF）</option>
+                  </select></div>
+              </div>
+              <div class="grid2" style="margin-bottom:10px">
+                <div><label class="lb">行数</label><input id="fRows" type="number" value="500"></div>
+                <div><label class="lb">随机种子</label><input id="fSeed" type="number" value="20260823"></div>
+              </div>
+              <div class="grid2">
+                <div><label class="lb">目标字段</label>
+                  <select id="fTarget"></select></div>
+                <div id="wrapTime" style="display:none"><label class="lb">时间列</label>
+                  <select id="fTime"></select></div>
+              </div>
+            </div>
+
+            <div class="fldbox" id="fldBoxWrap">
+              <h3>字段定义 <span class="pill m" id="fldCount">0</span>
+                <span style="flex:1"></span>
+                <button class="btn sm" id="btnAddField">+ 加一个</button></h3>
+              <div class="grid4" style="font-size:10.5px;color:var(--fg-mute);margin-bottom:4px">
+                <span>名称</span><span>类型</span><span>最小</span><span>最大</span>
+                <span>取值 / 单位</span><span></span>
+              </div>
+              <div id="fields"></div>
+            </div>
+
+            <div class="fldbox">
+              <h3>门禁阈值 <span class="pill m">调低会写进数据卡</span></h3>
+              <div class="grid2">
+                <div><label class="lb">最少行数 min_rows</label><input id="tRows" type="number" placeholder="50"></div>
+                <div><label class="lb">完整性下限 min_completeness</label><input id="tComp" type="number" step="0.01" placeholder="0.90"></div>
+              </div>
+            </div>
+
+            <div class="fldbox">
+              <h3>自动调参 <span class="pill m">Refine 外层循环</span></h3>
+              <label style="display:flex;align-items:center;gap:8px;font-size:12px;cursor:pointer">
+                <input type="checkbox" id="fAuto" style="width:15px;height:15px;accent-color:var(--accent)">
+                不达标时按规则自动调参重试
+              </label>
+              <div class="muted" style="font-size:11.5px;line-height:1.7;margin-top:7px">
+                只调 <code>num_records</code> / <code>missing_rate</code> / <code>noise_ratio</code>。
+                <b style="color:var(--amber)">绝不会降低门禁阈值</b>——能调阈值的循环一定「收敛」，
+                因为它会把标准降到自己够得着为止。
+                泄漏一类改参数救不了的问题会直接停在 <code>blocked</code>。
+              </div>
+              <div class="grid2" style="margin-top:9px">
+                <div><label class="lb">最多轮数</label>
+                  <input id="fRounds" type="number" value="5" min="1" max="20"></div>
+                <div></div>
+              </div>
+            </div>
+
+            <div id="loopBox"></div>
+
+            <div style="display:flex;gap:9px;align-items:center;margin-bottom:20px">
+              <button class="btn pri" id="btnRun">运行流水线</button>
+              <button class="btn" id="btnForce">强制全部重算</button>
+              <span style="flex:1"></span>
+              <span class="tb-stat" id="runHint"></span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col trace">
+          <div class="trace-h">
+            <div class="t">执行轨迹</div>
+            <span class="pill m" id="tracePill">未开始</span>
+            <span style="flex:1"></span>
+            <button class="btn sm" id="btnClearTrace">清空</button>
+          </div>
+          <div class="tlist scroll" id="trace">
+            <div class="empty">点「运行流水线」开始</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 图谱 ═══ -->
+    <section class="screen" id="s2">
+      <div class="col" style="flex:1">
+        <div class="canvas" id="canvas">
+          <div class="legend">
+            <span><i style="background:var(--green)"></i>已算</span>
+            <span><i style="background:var(--accent2)"></i>命中缓存</span>
+            <span><i style="background:var(--accent)"></i>运行中</span>
+            <span><i style="background:var(--red)"></i>失败/阻断</span>
+            <span><i style="background:var(--fg-mute)"></i>等待</span>
+          </div>
+          <div class="empty" id="canvasEmpty">还没有运行。先在「配置」页跑一次。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 质量 ═══ -->
+    <section class="screen" id="s3">
+      <div class="col" style="flex:1">
+        <div class="pad scroll" id="quality">
+          <div class="empty">还没有质量报告。</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 数据 ═══ -->
+    <section class="screen" id="s4">
+      <div class="col" style="flex:1">
+        <div class="pad" style="padding-bottom:8px">
+          <h2 class="sec">数据预览</h2>
+          <p class="sub" id="dataSub">还没有数据。</p>
+        </div>
+        <div class="scroll" style="flex:1;padding:0 22px 20px">
+          <div class="card" style="overflow:auto;max-height:100%"><div id="dataTable"></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ═══ 历史 ═══ -->
+    <section class="screen" id="s5">
+      <div class="col" style="flex:1">
+        <div class="pad scroll" id="history"><div class="empty">加载中…</div></div>
+      </div>
+    </section>
+  </div>
+</div>
+<script src="/static/app.js"></script>
+<script src="/static/paper.js"></script>
+</body>
+</html>

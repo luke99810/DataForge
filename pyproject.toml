@@ -29,6 +29,8 @@ dependencies = [
     "pandas>=2.0.0",
     "pyyaml>=6.0",
     "openpyxl>=3.1.0",
+    # 制品库用 parquet 存 DataFrame，编排层依赖它，不再是可选项
+    "pyarrow>=14.0",
 ]
 keywords = [
     "dataset", "data-generation", "machine-learning",
@@ -37,6 +39,9 @@ keywords = [
 ]
 
 [project.optional-dependencies]
+app = ["fastapi>=0.110", "uvicorn>=0.27", "pywebview>=5.0", "python-multipart>=0.0.9"]
+llm = ["openai>=1.0", "pymupdf>=1.24"]
+mcp = ["mcp>=2.0"]
 dev = [
     "pytest>=7.0",
     "pytest-cov>=4.0",
@@ -51,15 +56,18 @@ all = [
 [project.scripts]
 dg = "dataset_generator.cli:main"
 dataset-gen = "dataset_generator.cli:main"
+dataforge = "dataforge.__main__:main"
+dataforge-desktop = "dataforge.app.desktop:main"
+dataforge-mcp = "dataforge.mcp_server:main"
 
 [project.urls]
-Homepage = "https://github.com/luke99810/Dataset-Generator"
-Documentation = "https://github.com/luke99810/Dataset-Generator#readme"
-Repository = "https://github.com/luke99810/Dataset-Generator"
-Issues = "https://github.com/luke99810/Dataset-Generator/issues"
+Homepage = "https://github.com/luke99810/DataForge"
+Documentation = "https://github.com/luke99810/DataForge#readme"
+Repository = "https://github.com/luke99810/DataForge"
+Issues = "https://github.com/luke99810/DataForge/issues"
 
 [tool.setuptools.packages.find]
-include = ["dataset_generator*"]
+include = ["dataset_generator*", "dataforge*"]
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]

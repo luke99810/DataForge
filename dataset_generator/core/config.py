@@ -74,6 +74,7 @@ class DatasetConfig:
             Domain.NLP: {"demo": 100, "prototype": 1000, "production": 10000},
             Domain.IOT: {"demo": 500, "prototype": 5000, "production": 100000},
             Domain.ECOMMERCE: {"demo": 500, "prototype": 5000, "production": 50000},
+            Domain.LOGISTICS: {"demo": 500, "prototype": 5000, "production": 50000},
         }
 
         multipliers = {

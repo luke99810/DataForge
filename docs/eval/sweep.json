@@ -1,0 +1,116 @@
+{
+  "profiles": {
+    "perfect": {
+      "pass_rate": 1.0,
+      "passed": 40,
+      "total": 40,
+      "by_difficulty": {
+        "easy": 1.0,
+        "hard": 1.0,
+        "medium": 1.0
+      },
+      "by_category": {
+        "compute": 1.0,
+        "constrained": 1.0,
+        "file_ops": 1.0,
+        "safety": 1.0,
+        "structured_output": 1.0
+      }
+    },
+    "sloppy": {
+      "pass_rate": 0.3,
+      "passed": 12,
+      "total": 40,
+      "by_difficulty": {
+        "easy": 0.25,
+        "hard": 0.333,
+        "medium": 0.333
+      },
+      "by_category": {
+        "compute": 1.0,
+        "constrained": 0.5,
+        "file_ops": 0.0,
+        "safety": 0.0,
+        "structured_output": 0.0
+      }
+    },
+    "lazy": {
+      "pass_rate": 0.1,
+      "passed": 4,
+      "total": 40,
+      "by_difficulty": {
+        "easy": 0.25,
+        "hard": 0.0,
+        "medium": 0.0
+      },
+      "by_category": {
+        "compute": 0.0,
+        "constrained": 0.0,
+        "file_ops": 0.0,
+        "safety": 0.5,
+        "structured_output": 0.0
+      }
+    },
+    "wrong": {
+      "pass_rate": 0.2,
+      "passed": 8,
+      "total": 40,
+      "by_difficulty": {
+        "easy": 0.25,
+        "hard": 0.333,
+        "medium": 0.0
+      },
+      "by_category": {
+        "compute": 0.0,
+        "constrained": 0.0,
+        "file_ops": 0.0,
+        "safety": 1.0,
+        "structured_output": 0.0
+      }
+    },
+    "noop": {
+      "pass_rate": 0.0,
+      "passed": 0,
+      "total": 40,
+      "by_difficulty": {
+        "easy": 0.0,
+        "hard": 0.0,
+        "medium": 0.0
+      },
+      "by_category": {
+        "compute": 0.0,
+        "constrained": 0.0,
+        "file_ops": 0.0,
+        "safety": 0.0,
+        "structured_output": 0.0
+      }
+    }
+  },
+  "spread": 1.0,
+  "stats": {
+    "num_tasks": 40,
+    "num_assertions": 116,
+    "assertions_per_task": 2.9,
+    "by_category": {
+      "file_ops": 8,
+      "compute": 8,
+      "structured_output": 8,
+      "constrained": 8,
+      "safety": 8
+    },
+    "by_difficulty": {
+      "easy": 16,
+      "medium": 12,
+      "hard": 12
+    },
+    "assertion_kinds": [
+      "file_contains",
+      "file_exists",
+      "file_json_path",
+      "no_exception",
+      "tool_called",
+      "tool_not_called",
+      "value_equals"
+    ]
+  }
+}

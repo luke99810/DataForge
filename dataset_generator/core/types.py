@@ -14,6 +14,7 @@ class Domain(str, Enum):
     NLP = "nlp"
     IOT = "iot"
     ECOMMERCE = "ecommerce"
+    LOGISTICS = "logistics"
     CUSTOM = "custom"
 
     @classmethod
@@ -41,6 +42,12 @@ class Domain(str, Enum):
             "ecommerce": cls.ECOMMERCE,
             "零售": cls.ECOMMERCE,
             "retail": cls.ECOMMERCE,
+            "物流": cls.LOGISTICS,
+            "logistics": cls.LOGISTICS,
+            "logistic": cls.LOGISTICS,
+            "仓储": cls.LOGISTICS,
+            "供应链": cls.LOGISTICS,
+            "supply chain": cls.LOGISTICS,
         }
         return mapping.get(label.lower(), cls.CUSTOM)
 

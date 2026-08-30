@@ -69,3 +69,30 @@ logs/
 # Temp
 tmp/
 temp/
+
+# DataForge 运行产物（本地状态，不入库）
+#
+# 这些目录由每次运行生成：artifacts/ 是内容寻址的产物（含 parquet 数据集）、
+# traces/ 是执行轨迹、lineage/ 是血缘、papers/ 是抓取的源文档、
+# runs.sqlite 是运行库。三条理由都指向「不入库」：
+#   一、它们是运行状态而非源码，随每次执行变化；
+#   二、其中的 parquet 与本文件上方「数据集应当被生成而非存储」的规则冲突；
+#   三、papers/ 可能含第三方文档，而本仓库是公开的。
+.dataforge/
+.dfloop/
+.dfloop2/
+.dfpaper/
+.dfplan/
+.dfplan_bad/
+.dfplan_ts/
+
+# 本地启动器与未被引用的大图（不入库）
+#
+# 启动DataForge.bat 指向 %~dp0.dataforge —— 那是上面已排除的本地工作区，
+# 换台机器就不成立；且中文文件名在部分工具链上会出编码问题。
+启动DataForge.bat
+# logo.png(2000x2000, 1.4MB) 与 assets/logo-full.png(1460x1448, 1.0MB)
+# 全仓库无任何引用，合计 2.4MB 比源码还大，且入库后无法从历史中删净。
+# 需要展示用图时应压到 512px 以内再加，并由 README 实际引用。
+logo.png
+assets/logo-full.png
