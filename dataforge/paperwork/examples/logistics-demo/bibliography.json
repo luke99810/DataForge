@@ -1,0 +1,23 @@
+[
+  {
+    "id": "ropke2006",
+    "doi": "10.1287/trsc.1050.0135",
+    "verified": "metadata",
+    "citation": "Ropke, S., & Pisinger, D. (2006). An adaptive large neighborhood search heuristic for the pickup and delivery problem with time windows. Transportation Science, 40(4), 455-472.",
+    "evidence_read_level": "metadata only (teaching demo; not claimed as full-text read)"
+  },
+  {
+    "id": "bertsimas2020",
+    "doi": "10.1287/mnsc.2018.3253",
+    "verified": "metadata",
+    "citation": "Bertsimas, D., & Kallus, N. (2020). From predictive to prescriptive analytics. Management Science, 66(3), 1025-1044.",
+    "evidence_read_level": "metadata only (teaching demo; not claimed as full-text read)"
+  },
+  {
+    "id": "elmachtoub2022",
+    "doi": "10.1287/opre.2021.2194",
+    "verified": "metadata",
+    "citation": "Elmachtoub, A. N., & Grigas, P. (2022). Smart predict-then-optimize. Operations Research, 70(5), 2644-2662.",
+    "evidence_read_level": "metadata only (teaching demo; not claimed as full-text read)"
+  }
+]

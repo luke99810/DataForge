@@ -1,0 +1,25 @@
+{
+  "id": "",
+  "doi": "",
+  "title": "",
+  "authors": [],
+  "journal": "",
+  "year": null,
+  "url": "",
+  "metadata_status": "unverified",
+  "evidence_read_level": "none",
+  "fulltext": {
+    "url": "",
+    "path": "",
+    "sha256": "",
+    "quote": "",
+    "location": ""
+  },
+  "claim_ids": [],
+  "relation": "support|contradict|background",
+  "limitations": "",
+  "semantic_review": {
+    "status": "blocked",
+    "reviewer": ""
+  }
+}

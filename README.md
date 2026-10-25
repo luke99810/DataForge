@@ -63,6 +63,12 @@ Only L3 is permitted to call a language model. Model output is treated as a prop
 
 ---
 
+### Research Manuscript Workflow (paperwork)
+
+- **Nine-Gate Paper Workflow** — idea → journal → assets → literature → model → compute → claims → writing → reflection, ported from Idea2Paper as `dataforge/paperwork/`
+- **Fail-Closed Evidence Checks** — claims bound to run artifacts by hash; tampering is rejected, not warned
+- **Dual Manuscript Rendering** — single-source `manuscript.md` → LaTeX + Word (needs the `paperwork` extra)
+
 ## Installation
 
 ```bash

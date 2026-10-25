@@ -1,0 +1,18 @@
+{
+  "dataset_id": "",
+  "kind": "observed|synthetic",
+  "source_url": "",
+  "license": "",
+  "accessed_at": "",
+  "raw_artifact": "",
+  "sha256": "",
+  "units": {},
+  "coverage": "",
+  "transformations": [],
+  "privacy_review": "blocked",
+  "availability": {
+    "status": "unconfirmed",
+    "conditions": "",
+    "contact_confirmed": false
+  }
+}

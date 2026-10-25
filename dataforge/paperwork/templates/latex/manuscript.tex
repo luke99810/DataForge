@@ -1,0 +1,20 @@
+% 通用工作稿，不冒充目标期刊官方模板。由 render.py 实际套用。
+% !TEX program = xelatex
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage[a4paper,margin=2.54cm]{geometry}
+\usepackage{amsmath,amssymb,graphicx,booktabs,tabularx,array}
+\usepackage{caption,float}
+\usepackage[hidelinks]{hyperref}
+\setCJKmainfont{SimSun}
+\setCJKsansfont{SimHei}
+\setmainfont{Times New Roman}
+\linespread{1.5}
+\captionsetup{font=small,labelformat=empty}
+\setlength{\parindent}{2em}
+\title{\sffamily\bfseries\fontsize{22}{28}\selectfont @@TITLE@@}
+\author{}
+\date{}
+\begin{document}
+\maketitle
+@@BODY@@
+\end{document}

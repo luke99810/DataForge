@@ -289,6 +289,27 @@ Plan → Execute(图) → Verify(门禁) → Refine(调参) → 回到 Execute
 一套构建工具链。等 DAG 编辑、虚拟滚动这类需求上来了再切回去——
 后端接口不用动。
 
+## 论文工作流（paperwork，M1）
+
+把 Idea2Paper 的「研究思路 → 可复核论文」九门禁融入为 `dataforge/paperwork/` 子包，
+接在数据生成之后，形成完整科研闭环：**论文 → 数据集 → 建模计算 → 手稿 → 机械核验**。
+
+```bash
+python -m dataforge.paperwork init <dir>        # 建项目骨架 + 证据模板
+python -m dataforge.paperwork demo <dir>        # 教学闭环（newsvendor，可复现）
+python -m dataforge.paperwork validate <dir>    # fail-closed 机械检查
+python -m dataforge.paperwork run / doi / source / discover / manifest   # 其余子命令
+```
+
+九门禁（idea/journal/assets/literature/model/compute/claims/writing/reflection）中，
+可代码化的部分（compute/claims/figures/literature/rendering）已落地为脚本与检查；
+需要 LLM + 检索的门（idea/journal/model/reflection）保留为 `paperwork/SKILL.md` 指导的
+流程，后续按 Planner 哲学（模型产草案、代码校验）接入。
+
+两条哈希链并行不合并：DataForge 的 fingerprint→artifact→lineage，与 paperwork 的
+sha256→sources/claims/manifest→validate。交接点：数据卡里的 `synthetic: true` 与来源
+延续进 paperwork 的 `sources.json`。设计见 `docs/paperwork-fusion-design.md`。
+
 ## 还没做
 
 - **MCP 客户端方向**（接入外部 MCP 服务器）。老实说这条价值不高：

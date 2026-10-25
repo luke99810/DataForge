@@ -1,0 +1,34 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="800" height="460">
+<rect x="0" y="0" width="800" height="460" fill="white"/>
+<text x="400.0" y="20" font-size="14" text-anchor="middle" font-family="Times New Roman">Mean order wait by arrival rate</text>
+<text x="24" y="232.5" font-size="12" text-anchor="middle" transform="rotate(-90 24 232.5)" font-family="Times New Roman">wait_mean (min)</text>
+<line x1="100" y1="390.0" x2="755" y2="390.0" stroke="#dddddd"/>
+<text x="94" y="394.0" font-size="11" text-anchor="end" font-family="Times New Roman">0.00</text>
+<line x1="100" y1="311.2" x2="755" y2="311.2" stroke="#dddddd"/>
+<text x="94" y="315.2" font-size="11" text-anchor="end" font-family="Times New Roman">2.28</text>
+<line x1="100" y1="232.5" x2="755" y2="232.5" stroke="#dddddd"/>
+<text x="94" y="236.5" font-size="11" text-anchor="end" font-family="Times New Roman">4.55</text>
+<line x1="100" y1="153.8" x2="755" y2="153.8" stroke="#dddddd"/>
+<text x="94" y="157.8" font-size="11" text-anchor="end" font-family="Times New Roman">6.83</text>
+<line x1="100" y1="75.0" x2="755" y2="75.0" stroke="#dddddd"/>
+<text x="94" y="79.0" font-size="11" text-anchor="end" font-family="Times New Roman">9.10</text>
+<line x1="100.0" y1="75" x2="100.0" y2="390" stroke="#eeeeee"/>
+<text x="100.0" y="408" font-size="12" text-anchor="middle" font-family="Times New Roman">0.2</text>
+<line x1="345.6" y1="75" x2="345.6" y2="390" stroke="#eeeeee"/>
+<text x="345.6" y="408" font-size="12" text-anchor="middle" font-family="Times New Roman">0.5</text>
+<line x1="755.0" y1="75" x2="755.0" y2="390" stroke="#eeeeee"/>
+<text x="755.0" y="408" font-size="12" text-anchor="middle" font-family="Times New Roman">1</text>
+<polyline points="100.0,390.0 345.6,390.0 755.0,390.0" fill="none" stroke="#0072B2" stroke-width="2.5" stroke-dasharray="none"/>
+<circle cx="100.0" cy="390.0" r="4" fill="#0072B2"/>
+<circle cx="345.6" cy="390.0" r="4" fill="#0072B2"/>
+<circle cx="755.0" cy="390.0" r="4" fill="#0072B2"/>
+<polyline points="100.0,127.5 345.6,251.6 755.0,282.4" fill="none" stroke="#009E73" stroke-width="2.5" stroke-dasharray="8 5"/>
+<circle cx="100.0" cy="127.5" r="4" fill="#009E73"/>
+<circle cx="345.6" cy="251.6" r="4" fill="#009E73"/>
+<circle cx="755.0" cy="282.4" r="4" fill="#009E73"/>
+<line x1="115" y1="50" x2="135" y2="50" stroke="#0072B2" stroke-width="2"/>
+<text x="141" y="54" font-size="12" font-family="Times New Roman">S1</text>
+<line x1="295" y1="50" x2="315" y2="50" stroke="#009E73" stroke-width="2"/>
+<text x="321" y="54" font-size="12" font-family="Times New Roman">S2</text>
+<text x="427.5" y="445" font-size="14" text-anchor="middle" font-family="Times New Roman">Arrival rate (orders/min)</text>
+</svg>

@@ -96,3 +96,9 @@ temp/
 # 需要展示用图时应压到 512px 以内再加，并由 README 实际引用。
 logo.png
 assets/logo-full.png
+
+# 例外：paperwork 教学示例（合成输入 + 结果，体积小，供 demo 完整复现，
+# 非「应被生成而非存储」的大数据集）
+!dataforge/paperwork/examples/logistics-demo/data/
+!dataforge/paperwork/examples/logistics-demo/data/demand.json
+!dataforge/paperwork/examples/logistics-demo/results/logistics.csv

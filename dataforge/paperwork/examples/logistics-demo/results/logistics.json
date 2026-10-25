@@ -1,0 +1,163 @@
+{
+  "seed": 42,
+  "check": {
+    "S2_w0_equals_S1": "pass"
+  },
+  "rows": [
+    {
+      "lam": 0.2,
+      "strategy": "S1",
+      "w": 0,
+      "n_orders": 122,
+      "n_batch": 122,
+      "dist_total": 905.8691273471447,
+      "wait_mean": 0.0,
+      "ontime": 0.9918032786885246,
+      "dist_per_order": 7.425156781533973
+    },
+    {
+      "lam": 0.2,
+      "strategy": "S2",
+      "w": 0,
+      "n_orders": 122,
+      "n_batch": 122,
+      "dist_total": 905.8691273471447,
+      "wait_mean": 0.0,
+      "ontime": 0.9918032786885246,
+      "dist_per_order": 7.425156781533973
+    },
+    {
+      "lam": 0.2,
+      "strategy": "S2",
+      "w": 5,
+      "n_orders": 122,
+      "n_batch": 39,
+      "dist_total": 700.2844290884473,
+      "wait_mean": 7.583688172000275,
+      "ontime": 0.04918032786885246,
+      "dist_per_order": 5.740036304003666
+    },
+    {
+      "lam": 0.5,
+      "strategy": "S1",
+      "w": 0,
+      "n_orders": 315,
+      "n_batch": 315,
+      "dist_total": 2360.467447193542,
+      "wait_mean": 0.0,
+      "ontime": 0.9809523809523809,
+      "dist_per_order": 7.4935474514080695
+    },
+    {
+      "lam": 0.5,
+      "strategy": "S2",
+      "w": 0,
+      "n_orders": 315,
+      "n_batch": 315,
+      "dist_total": 2360.467447193542,
+      "wait_mean": 0.0,
+      "ontime": 0.9809523809523809,
+      "dist_per_order": 7.4935474514080695
+    },
+    {
+      "lam": 0.5,
+      "strategy": "S2",
+      "w": 5,
+      "n_orders": 315,
+      "n_batch": 69,
+      "dist_total": 1711.5491566633698,
+      "wait_mean": 3.9992961481693117,
+      "ontime": 0.009523809523809525,
+      "dist_per_order": 5.43348938623292
+    },
+    {
+      "lam": 0.5,
+      "strategy": "S2",
+      "w": 2,
+      "n_orders": 315,
+      "n_batch": 103,
+      "dist_total": 1788.4203216705876,
+      "wait_mean": 2.3170480575523515,
+      "ontime": 0.10476190476190476,
+      "dist_per_order": 5.677524830700278
+    },
+    {
+      "lam": 0.5,
+      "strategy": "S2",
+      "w": 8,
+      "n_orders": 315,
+      "n_batch": 50,
+      "dist_total": 1613.973684688228,
+      "wait_mean": 5.82069696122039,
+      "ontime": 0.0031746031746031746,
+      "dist_per_order": 5.123725983137232
+    },
+    {
+      "lam": 1.0,
+      "strategy": "S1",
+      "w": 0,
+      "n_orders": 596,
+      "n_batch": 596,
+      "dist_total": 4600.502071794978,
+      "wait_mean": 0.0,
+      "ontime": 0.9848993288590604,
+      "dist_per_order": 7.718963207709695
+    },
+    {
+      "lam": 1.0,
+      "strategy": "S2",
+      "w": 0,
+      "n_orders": 596,
+      "n_batch": 596,
+      "dist_total": 4600.502071794978,
+      "wait_mean": 0.0,
+      "ontime": 0.9848993288590604,
+      "dist_per_order": 7.718963207709695
+    },
+    {
+      "lam": 1.0,
+      "strategy": "S2",
+      "w": 5,
+      "n_orders": 596,
+      "n_batch": 89,
+      "dist_total": 3210.838026550245,
+      "wait_mean": 3.110021746464462,
+      "ontime": 0.0,
+      "dist_per_order": 5.3873121250843035
+    }
+  ],
+  "summary": {
+    "lam_scan": [
+      {
+        "lam": 0.2,
+        "S1_n_batch": 122,
+        "S2_n_batch": 39,
+        "S1_dist": 905.8691273471447,
+        "S2_dist": 700.2844290884473,
+        "S1_wait": 0.0,
+        "S2_wait": 7.583688172000275,
+        "S2_ontime": 0.04918032786885246
+      },
+      {
+        "lam": 0.5,
+        "S1_n_batch": 315,
+        "S2_n_batch": 69,
+        "S1_dist": 2360.467447193542,
+        "S2_dist": 1711.5491566633698,
+        "S1_wait": 0.0,
+        "S2_wait": 3.9992961481693117,
+        "S2_ontime": 0.009523809523809525
+      },
+      {
+        "lam": 1.0,
+        "S1_n_batch": 596,
+        "S2_n_batch": 89,
+        "S1_dist": 4600.502071794978,
+        "S2_dist": 3210.838026550245,
+        "S1_wait": 0.0,
+        "S2_wait": 3.110021746464462,
+        "S2_ontime": 0.0
+      }
+    ]
+  }
+}
